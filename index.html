@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shriya Shrivastava — Analytics Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0a0a08;
+  --bg2:#111110;
+  --bg3:#1a1a17;
+  --rule:#2a2a26;
+  --rule2:#3a3a35;
+  --text:#f0ede8;
+  --text2:#c8c4bc;
+  --text3:#8a8680;
+  --gold:#c8923a;
+  --gold2:#e8b86a;
+  --gold-dim:rgba(200,146,58,0.15);
+  --green:#3a7a5a;
+  --green-lt:#6abf8a;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+  position:fixed;width:8px;height:8px;
+  background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(200,146,58,0.4);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:all 0.15s ease;
+}
+body:hover .cursor{opacity:1}
+
+/* NOISE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:0.35;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 4rem;
+  border-bottom:1px solid transparent;
+  transition:border-color 0.3s,background 0.3s;
+}
+nav.scrolled{
+  background:rgba(10,10,8,0.9);
+  border-color:var(--rule);
+  backdrop-filter:blur(20px);
+}
+.nav-mark{
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:0.72rem;font-weight:400;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text3);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold);
+  padding:0.55rem 1.4rem;text-decoration:none;
+  transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 4rem 5rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;
+  font-size:clamp(10rem,20vw,22rem);
+  font-weight:700;font-style:italic;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,146,58,0.06);
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:-0.03em;
+  animation:float 12s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translate(-50%,-50%) translateY(0)}
+  50%{transform:translate(-50%,-50%) translateY(-20px)}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:flex-end;gap:4rem;
+  position:relative;z-index:2;
+}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,9vw,9rem);
+  font-weight:700;
+  line-height:0.95;
+  letter-spacing:-0.02em;
+  margin-bottom:2rem;
+}
+.hero-name span{display:block}
+.hero-name .italic{font-style:italic;color:var(--gold)}
+.hero-tagline{
+  font-size:1rem;
+  color:var(--text2);
+  max-width:560px;
+  line-height:1.8;
+  font-weight:400;
+}
+.hero-right{text-align:right}
+.hero-scroll-hint{
+  font-size:0.68rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--text3);
+  display:flex;align-items:center;gap:0.75rem;
+  justify-content:flex-end;margin-bottom:2rem;
+}
+.scroll-line{
+  width:60px;height:1px;
+  background:linear-gradient(to left,var(--text3),transparent);
+  animation:scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine{
+  0%,100%{width:60px}50%{width:20px}
+}
+.hero-location{
+  font-size:0.75rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--text3);
+}
+.hero-badge{
+  display:inline-block;margin-bottom:1.5rem;
+  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(200,146,58,0.3);
+  padding:0.45rem 1rem;
+}
+.hero-line{
+  width:100%;height:1px;background:var(--rule);
+  margin:3rem 0;position:relative;z-index:2;
+}
+.hero-stats{
+  display:flex;gap:0;position:relative;z-index:2;
+}
+.hero-stat{
+  flex:1;padding:1.5rem 2rem;
+  border-right:1px solid var(--rule);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.5rem;font-weight:700;
+  color:var(--text);line-height:1;
+  margin-bottom:0.3rem;
+}
+.hero-stat-num span{color:var(--gold)}
+.hero-stat-label{
+  font-size:0.68rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--text2);
+}
+
+/* MARQUEE */
+.marquee-wrap{
+  overflow:hidden;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:1rem 0;background:var(--bg2);
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:marquee 25s linear infinite;
+  width:max-content;
+}
+.marquee-item{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text3);padding:0 3rem;
+  border-right:1px solid var(--rule);white-space:nowrap;
+}
+.marquee-item.gold{color:var(--gold)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION SHELLS */
+section{position:relative;padding:7rem 4rem}
+.s-label{
+  display:flex;align-items:center;gap:1rem;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:4rem;
+}
+.s-label::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,var(--rule),transparent);
+}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,4vw,4rem);
+  font-weight:700;line-height:1.1;
+  margin-bottom:3rem;
+}
+h2 em{font-style:italic;color:var(--gold)}
+
+/* PHILOSOPHY */
+.philosophy{background:var(--bg2)}
+.philosophy-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;border:1px solid var(--rule);
+}
+.phil-card{
+  padding:3rem;border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.phil-card:hover{background:rgba(200,146,58,0.04)}
+.phil-card:nth-child(2n){border-right:none}
+.phil-card:nth-child(3),.phil-card:nth-child(4){border-bottom:none}
+.phil-num{
+  font-family:'DM Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.1em;
+  color:var(--text3);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.phil-num::after{content:'';flex:1;height:1px;background:var(--rule)}
+.phil-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  margin-bottom:1rem;line-height:1.2;
+}
+.phil-card p{font-size:0.9rem;color:var(--text2);line-height:1.8}
+
+/* IMPACT */
+.impact-section{background:var(--bg)}
+.impact-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);
+  border:1px solid var(--rule);
+  margin-bottom:4rem;
+}
+.impact-cell{
+  background:var(--bg);padding:3rem 2.5rem;
+  position:relative;overflow:hidden;
+}
+.impact-cell::before{
+  content:'';position:absolute;top:0;left:0;
+  width:100%;height:2px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.impact-cell:hover::before{transform:scaleX(1)}
+.impact-num{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;font-weight:700;line-height:1;
+  margin-bottom:0.5rem;
+}
+.impact-num .unit{font-size:2rem;color:var(--gold)}
+.impact-desc{font-size:0.85rem;color:var(--text2);line-height:1.7}
+.impact-org{
+  font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text3);margin-top:0.75rem;
+  font-family:'DM Mono',monospace;
+}
+
+/* CAREER */
+.career-section{background:var(--bg2)}
+.timeline{max-width:900px}
+.tl-item{
+  display:grid;grid-template-columns:220px 1fr;
+  gap:3rem;
+  padding:3rem 0;
+  border-bottom:1px solid var(--rule);
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.6s,transform 0.6s;
+}
+.tl-item.in{opacity:1;transform:translateY(0)}
+.tl-meta{}
+.tl-period{
+  font-family:'DM Mono',monospace;
+  font-size:0.75rem;color:var(--text3);
+  letter-spacing:0.05em;margin-bottom:0.4rem;
+}
+.tl-location{
+  font-size:0.75rem;color:var(--text3);
+  font-style:italic;
+}
+.tl-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);margin-top:0.3rem;
+  display:none;
+}
+.tl-content{}
+.tl-company{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;
+  margin-bottom:0.2rem;
+  transition:color 0.2s;
+}
+.tl-item:hover .tl-company{color:var(--gold)}
+.tl-role{
+  font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.2rem;font-weight:500;
+}
+.tl-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;margin-bottom:1.2rem}
+.tl-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tl-tag{
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text3);border:1px solid var(--rule2);
+  padding:0.25rem 0.65rem;
+  transition:border-color 0.2s,color 0.2s;
+}
+.tl-item:hover .tl-tag{border-color:var(--rule2);color:var(--text2)}
+
+/* STACK */
+.stack-section{background:var(--bg)}
+.stack-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border:1px solid var(--rule);background:var(--rule);
+}
+.stack-block{
+  background:var(--bg);padding:2.5rem 2rem;
+  border-right:0 solid;
+}
+.stack-block-label{
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;padding-bottom:1rem;
+  border-bottom:1px solid var(--rule);
+}
+.stack-block ul{list-style:none}
+.stack-block ul li{
+  font-size:0.9rem;color:var(--text2);
+  padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;align-items:center;gap:0.6rem;
+  transition:color 0.2s;
+}
+.stack-block ul li:hover{color:var(--text)}
+.stack-block ul li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;opacity:0.6;
+}
+
+/* ABOUT */
+.about-section{
+  background:var(--bg2);
+}
+.about-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:start;
+}
+.about-left{}
+.about-pull{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  font-style:italic;line-height:1.5;
+  color:var(--text);margin-bottom:2rem;
+  padding-left:2rem;
+  border-left:2px solid var(--gold);
+}
+.about-body{font-size:0.95rem;color:var(--text2);line-height:1.9}
+.about-right{}
+.edu-item{
+  padding:2rem 0;border-bottom:1px solid var(--rule);
+}
+.edu-item:first-child{padding-top:0}
+.edu-deg{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;margin-bottom:0.3rem;
+}
+.edu-uni{font-size:0.85rem;color:var(--text2)}
+.edu-field{
+  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);margin-top:0.4rem;
+}
+.cert-heading{
+  font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text3);margin:2.5rem 0 1rem;
+}
+.cert-list{list-style:none}
+.cert-list li{
+  font-size:0.85rem;color:var(--text2);
+  padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;gap:0.75rem;align-items:flex-start;
+}
+.cert-list li::before{
+  content:'✦';font-size:0.5rem;color:var(--gold);
+  margin-top:5px;flex-shrink:0;
+}
+
+/* CONTACT */
+.contact-section{
+  background:var(--bg);
+  min-height:60vh;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.contact-inner{text-align:center;max-width:700px;margin:0 auto}
+.contact-intro{
+  font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:2rem;
+}
+.contact-heading{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,6rem);
+  font-weight:700;line-height:0.95;
+  margin-bottom:2rem;
+}
+.contact-heading em{font-style:italic;color:var(--gold);display:block}
+.contact-sub{font-size:1rem;color:var(--text2);margin-bottom:3rem;line-height:1.8}
+.contact-links{
+  display:flex;justify-content:center;gap:1.5rem;
+  flex-wrap:wrap;margin-bottom:3rem;
+}
+.c-link{
+  display:flex;align-items:center;gap:0.75rem;
+  font-size:0.8rem;letter-spacing:0.08em;
+  color:var(--text2);text-decoration:none;
+  border:1px solid var(--rule2);padding:0.85rem 1.75rem;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+}
+.c-link:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.c-link svg{flex-shrink:0}
+.industries{
+  display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;
+}
+.ind-tag{
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text3);border:1px solid var(--rule);
+  padding:0.3rem 0.8rem;
+}
+
+/* CONTACT FORM */
+.contact-form-wrap{
+  width:100%;max-width:600px;margin:0 auto 0;
+  text-align:left;
+}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cf-field{margin-bottom:1.2rem}
+.cf-label{
+  display:block;font-size:0.68rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem;
+}
+.cf-input{
+  width:100%;background:var(--bg2);
+  border:1px solid var(--rule2);color:var(--text);
+  padding:0.85rem 1rem;font-family:'Syne',sans-serif;
+  font-size:0.9rem;outline:none;
+  transition:border-color 0.2s;
+  -webkit-appearance:none;border-radius:0;
+}
+.cf-input::placeholder{color:var(--text3)}
+.cf-input:focus{border-color:var(--gold)}
+.cf-textarea{resize:vertical;min-height:120px}
+.cf-footer{display:flex;align-items:center;gap:1.5rem;margin-top:0.5rem}
+.cf-btn{
+  background:var(--gold);color:var(--bg);
+  border:none;padding:0.9rem 2rem;
+  font-family:'Syne',sans-serif;font-size:0.8rem;
+  font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;transition:background 0.2s,transform 0.15s;
+}
+.cf-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.cf-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.cf-status{font-size:0.85rem;color:var(--text2)}
+.cf-status.success{color:#6abf8a}
+.cf-status.error{color:#e07070}
+@media(max-width:600px){.cf-row{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{
+  padding:2rem 4rem;
+  border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--bg);
+}
+.f-left{font-size:0.75rem;color:var(--text3)}
+.f-right{
+  font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text3);
+}
+
+/* ANIMATIONS */
+@keyframes heroIn{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-grid,.hero-line,.hero-stats{
+  animation:heroIn 1s ease both;
+}
+.hero-grid{animation-delay:0.2s}
+.hero-line{animation-delay:0.5s}
+.hero-stats{animation-delay:0.6s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .hero{padding:0 1.5rem 3rem}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-stats{flex-wrap:wrap}
+  .hero-stat{min-width:50%}
+  .philosophy-grid,.about-inner,.impact-row,.stack-grid{grid-template-columns:1fr}
+  .tl-item{grid-template-columns:1fr;gap:0.5rem}
+  footer{flex-direction:column;gap:0.5rem;padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a class="nav-mark" href="#">SS</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text">Data</div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Analytics Manager · Data & Insights</div>
+      <h1 class="hero-name">
+        <span>Shriya</span>
+        <span class="italic">Shrivastava</span>
+      </h1>
+      <p class="hero-tagline">
+        I build the analytical infrastructure that turns raw data into strategic decisions — across iGaming, Finance, and Healthcare, at Bloomberg, Entain, and beyond.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+      <p class="hero-location">Based in India · Open globally</p>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">6<span>+</span></div>
+      <div class="hero-stat-label">Years in analytics</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">12<span>+</span></div>
+      <div class="hero-stat-label">Markets covered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8<span>%</span></div>
+      <div class="hero-stat-label">RoAS increase delivered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">Global organisations</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">MSc</div>
+      <div class="hero-stat-label">Business analytics, Warwick</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item gold">Bloomberg</span>
+    <span class="marquee-item">Entain Group</span>
+    <span class="marquee-item gold">Punt</span>
+    <span class="marquee-item">ClickOut Media</span>
+    <span class="marquee-item gold">Warwick Business School</span>
+    <span class="marquee-item">dbt · Hex · QuickSight</span>
+    <span class="marquee-item gold">Marketing Mix Modelling</span>
+    <span class="marquee-item">Multi-Touch Attribution</span>
+    <span class="marquee-item gold">Data Governance</span>
+    <span class="marquee-item">PII Compliance</span>
+    <span class="marquee-item gold">iGaming · Finance · Healthcare</span>
+    <span class="marquee-item">Strategic Analytics</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item gold">Bloomberg</span>
+    <span class="marquee-item">Entain Group</span>
+    <span class="marquee-item gold">Punt</span>
+    <span class="marquee-item">ClickOut Media</span>
+    <span class="marquee-item gold">Warwick Business School</span>
+    <span class="marquee-item">dbt · Hex · QuickSight</span>
+    <span class="marquee-item gold">Marketing Mix Modelling</span>
+    <span class="marquee-item">Multi-Touch Attribution</span>
+    <span class="marquee-item gold">Data Governance</span>
+    <span class="marquee-item">PII Compliance</span>
+    <span class="marquee-item gold">iGaming · Finance · Healthcare</span>
+    <span class="marquee-item">Strategic Analytics</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="s-label">How I think about data</div>
+  <h2>A point of <em>view</em></h2>
+  <div class="philosophy-grid">
+    <div class="phil-card">
+      <div class="phil-num">01</div>
+      <h3>Data without narrative is noise</h3>
+      <p>Numbers alone don't move organisations. The real craft is translating complex datasets into stories that make a CFO act, a CMO shift budget, and an engineering team prioritise. Storytelling is the most underrated analytical skill.</p>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">02</div>
+      <h3>Governance is a growth engine</h3>
+      <p>Most companies treat data governance as a compliance checkbox. I treat it as a competitive advantage. When your metric definitions are trusted, your dbt logic is clean, and your pipelines are reliable — the whole organisation moves faster.</p>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">03</div>
+      <h3>The best model is the one used</h3>
+      <p>A beautiful attribution model sitting in a notebook is worth nothing. I build analytical frameworks that business teams actually adopt — which means obsessing over communication, change management, and decision integration, not just technical elegance.</p>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">04</div>
+      <h3>Global perspective, local context</h3>
+      <p>Having built analytics across 12+ markets in Europe and the US, I know that one size never fits all. Regulatory environments, customer behaviours, and data maturity vary enormously — successful analytics strategies are adaptive by design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact-section" id="impact">
+  <div class="s-label">Quantified results</div>
+  <h2>Impact by the <em>numbers</em></h2>
+  <div class="impact-row">
+    <div class="impact-cell">
+      <div class="impact-num">7<span class="unit">–8%</span></div>
+      <div class="impact-desc">Increase in Return on Ad Spend through quarterly budget optimisation using MMM outputs and statistical response curves</div>
+      <div class="impact-org">Entain Group</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">8<span class="unit">–10%</span></div>
+      <div class="impact-desc">Improvement in customer acquisition by defining, monitoring and calibrating KPIs and campaign strategies across 2 global brands</div>
+      <div class="impact-org">Entain Group</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">12<span class="unit">hrs</span></div>
+      <div class="impact-desc">Saved per week for the direct marketing team by automating reporting workflows — freeing analysts to focus on insights, not data wrangling</div>
+      <div class="impact-org">Prostate Cancer UK</div>
+    </div>
+  </div>
+  <div class="impact-row" style="margin-bottom:0">
+    <div class="impact-cell">
+      <div class="impact-num">12<span class="unit">+</span></div>
+      <div class="impact-desc">Markets across Europe and the US managed simultaneously, building a unified analytics framework adaptable to local regulatory and market contexts</div>
+      <div class="impact-org">Entain Group</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">10<span class="unit">+</span></div>
+      <div class="impact-desc">Live web dashboards built and deployed end-to-end — from requirements analysis and design through to SQL-powered production release</div>
+      <div class="impact-org">Cognizant</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">3</div>
+      <div class="impact-desc">Full-stack analytics teams led across CRM, VIP, and Marketing — overseeing dbt logic, metric governance, and scalable reporting foundations</div>
+      <div class="impact-org">Punt</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section class="career-section" id="career">
+  <div class="s-label">Experience</div>
+  <h2>The <em>journey</em></h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Feb 2025 — Present</p>
+        <p class="tl-location">India</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">Punt</p>
+        <p class="tl-role">Analytics Manager, Data & Insights</p>
+        <p class="tl-desc">Leading the entire Data & Insights function across Punt & Chanced — spanning CRM, VIP, Marketing, Product, and Engineering. Owning dbt logic, metric definitions, governance frameworks, and PII compliance. Building scalable QuickSight datasets and reporting foundations that power acquisition strategy and customer engagement.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">dbt</span><span class="tl-tag">QuickSight</span>
+          <span class="tl-tag">PII governance</span><span class="tl-tag">Team leadership</span>
+          <span class="tl-tag">iGaming</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Sep 2024 — Feb 2025</p>
+        <p class="tl-location">London, UK</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">ClickOut Media</p>
+        <p class="tl-role">Marketing Analyst Lead</p>
+        <p class="tl-desc">Led marketing analytics strategy for a performance-focused affiliate media business, developing insight frameworks and measurement infrastructure across paid channels.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">Performance marketing</span>
+          <span class="tl-tag">Affiliate analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Dec 2022 — Sep 2024</p>
+        <p class="tl-location">London, UK</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">Bloomberg</p>
+        <p class="tl-role">Senior Marketing Analyst</p>
+        <p class="tl-desc">Global Marketing Analytics & Strategy at one of the world's foremost financial data companies. Collaborated with engineers, data scientists, and analysts across the US, Europe, and Asia to build data-led marketing initiatives with global reach and impact.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">Global analytics</span><span class="tl-tag">Finance</span>
+          <span class="tl-tag">Cross-functional</span><span class="tl-tag">Marketing strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Mar 2020 — Dec 2022</p>
+        <p class="tl-location">London, UK</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">Entain</p>
+        <p class="tl-role">Marketing Analytics — Party Brands Global</p>
+        <p class="tl-desc">Key analytics lead for party brands globally within Entain's Advanced Analytics team. Built COVID-impact models across geographies, defined KPIs for 2 brands across 12+ markets, and drove a 7–8% RoAS improvement through MMM-led budget optimisation. Built both last-touch and multi-touch attribution models from the ground up.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">+7–8% RoAS</span><span class="tl-tag">+8–10% acquisition</span>
+          <span class="tl-tag">MMM</span><span class="tl-tag">MTA</span>
+          <span class="tl-tag">12+ markets</span><span class="tl-tag">iGaming</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Sep 2019 — Mar 2020</p>
+        <p class="tl-location">London, UK</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">Newsquest Specialist Media</p>
+        <p class="tl-role">Product / Data Analyst</p>
+        <p class="tl-desc">Embedded within Agile product lifecycle teams, defining reporting requirements and data insight inputs for editorial, commercial, and product development.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">Agile</span><span class="tl-tag">Product analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <p class="tl-period">Jul 2013 — Feb 2016</p>
+        <p class="tl-location">Chennai, India</p>
+      </div>
+      <div class="tl-content">
+        <p class="tl-company">Cognizant</p>
+        <p class="tl-role">Programmer Analyst</p>
+        <p class="tl-desc">Core member of the Life Sciences automation team. Delivered 10+ SQL-backed live dashboards, wrote 40+ design documents, and led a team of 4 analysts. Reduced repetitive business processes through bespoke .Net tools — building a foundation in engineering discipline that still shapes how I approach analytical systems today.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">10+ dashboards</span><span class="tl-tag">SQL</span>
+          <span class="tl-tag">.Net</span><span class="tl-tag">Life sciences</span>
+          <span class="tl-tag">Team leadership</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack-section" id="stack">
+  <div class="s-label">Technical capabilities</div>
+  <h2>The <em>stack</em></h2>
+  <div class="stack-grid">
+    <div class="stack-block">
+      <div class="stack-block-label">Analytics & BI</div>
+      <ul>
+        <li>Hex</li>
+        <li>Tableau</li>
+        <li>Amazon QuickSight</li>
+        <li>Adobe Analytics</li>
+      </ul>
+    </div>
+    <div class="stack-block">
+      <div class="stack-block-label">Data Engineering</div>
+      <ul>
+        <li>dbt (logic & governance)</li>
+        <li>SQL</li>
+        <li>Python</li>
+        <li>PII frameworks</li>
+      </ul>
+    </div>
+    <div class="stack-block">
+      <div class="stack-block-label">Marketing Science</div>
+      <ul>
+        <li>Marketing Mix Modelling</li>
+        <li>Multi-Touch Attribution</li>
+        <li>Response curves</li>
+        <li>Campaign taxonomy</li>
+        <li>UTM architecture</li>
+      </ul>
+    </div>
+    <div class="stack-block">
+      <div class="stack-block-label">Leadership</div>
+      <ul>
+        <li>Cross-functional teams</li>
+        <li>Stakeholder comms</li>
+        <li>Hiring & mentoring</li>
+        <li>Executive storytelling</li>
+        <li>Data governance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="s-label">Background</div>
+  <div class="about-inner">
+    <div class="about-left">
+      <h2 style="margin-bottom:2rem">Beyond the <em>numbers</em></h2>
+      <blockquote class="about-pull">
+        "My mission is to enhance business results through data-driven insights, collaborative effort, and analytical frameworks that actually get used."
+      </blockquote>
+      <p class="about-body">
+        I started my career as a programmer analyst — building dashboards with SQL and .Net for life sciences teams at Cognizant in Chennai. That engineering foundation gave me something most analysts lack: a genuine appreciation for how data systems work underneath the surface.<br><br>
+        From there, I moved to London and spent a decade working across some of the most data-intensive industries in the world — from the real-time financial data infrastructure of Bloomberg to the hyper-competitive player analytics environment of Entain's global gaming brands.<br><br>
+        I now lead the Data & Insights function at Punt, where I'm building the analytical foundations for a fast-growing iGaming business — owning everything from dbt pipelines and metric governance to VIP analytics and acquisition strategy.<br><br>
+        I speak Hindi (native), English (full professional), and Tamil (professional working) — a reflection of a career built across cultures and geographies.
+      </p>
+    </div>
+    <div class="about-right">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem">Education</h3>
+      <div class="edu-item">
+        <p class="edu-deg">Master of Science, Business Analytics</p>
+        <p class="edu-uni">University of Warwick — Warwick Business School</p>
+        <p class="edu-field">Quantitative methods · Strategic analytics</p>
+      </div>
+      <div class="edu-item">
+        <p class="edu-deg">Bachelor of Engineering</p>
+        <p class="edu-uni">Rajiv Gandhi Prodyogiki Vishwavidyalaya</p>
+        <p class="edu-field">Electronics & Communications Engineering</p>
+      </div>
+      <p class="cert-heading">Certifications</p>
+      <ul class="cert-list">
+        <li>Python for Data Science Essential Training</li>
+        <li>Marketing Analytics: Setting and Measuring KPIs</li>
+        <li>Advanced Data Visualizations: 10 Uncommon Plot Types</li>
+        <li>Tableau 10 for Data Scientists</li>
+        <li>Learning Adobe Reports and Analytics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="contact-intro">Open to conversations</p>
+    <h2 class="contact-heading">
+      Let's build<br>
+      <em>something</em>
+    </h2>
+    <p class="contact-sub">
+      Whether you're looking for an analytics leader, want to discuss data strategy, or just want to connect — drop me a message and I'll get back to you.
+    </p>
+
+    <div class="contact-form-wrap">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-name">Your name</label>
+          <input class="cf-input" type="text" id="cf-name" placeholder="Jane Smith">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-email">Your email</label>
+          <input class="cf-input" type="email" id="cf-email" placeholder="jane@company.com">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-subject">What's this about?</label>
+        <input class="cf-input" type="text" id="cf-subject" placeholder="Analytics opportunity · Consulting · Just connecting">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-msg">Message</label>
+        <textarea class="cf-input cf-textarea" id="cf-msg" rows="4" placeholder="Tell me a bit about what you're working on…"></textarea>
+      </div>
+      <div class="cf-footer">
+        <button class="cf-btn" id="cf-send" onclick="sendEmail()">
+          <span id="cf-btn-text">Send message →</span>
+        </button>
+        <p id="cf-status" class="cf-status"></p>
+      </div>
+    </div>
+
+    <div class="contact-links" style="margin-top:2.5rem;justify-content:center">
+      <a href="https://www.linkedin.com/in/shriya-shrivastava/" target="_blank" class="c-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+
+    <div class="industries" style="margin-top:2rem">
+      <span class="ind-tag">iGaming</span>
+      <span class="ind-tag">Finance</span>
+      <span class="ind-tag">Healthcare</span>
+      <span class="ind-tag">Media</span>
+      <span class="ind-tag">Life Sciences</span>
+      <span class="ind-tag">Remote-first</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="f-left">© 2025 Shriya Shrivastava</span>
+  <span class="f-right">Analytics Manager · Data & Insights · India</span>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='rgba(200,146,58,0.7)';cur.style.opacity='0'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(200,146,58,0.4)';cur.style.opacity='1'});
+});
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)});
+
+// Timeline in-view
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'),i*80);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.tl-item').forEach(el=>obs.observe(el));
+
+// Impact cell hover accent
+document.querySelectorAll('.impact-cell').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{el.style.background='rgba(200,146,58,0.04)'});
+  el.addEventListener('mouseleave',()=>{el.style.background=''});
+});
+</script>
+</body>
+</html>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const EMAILJS_PUBLIC_KEY  = 'Ug4Eg8EwHgJSVioww';
+const EMAILJS_SERVICE_ID  = 'service_ayhueun';
+const EMAILJS_TEMPLATE_ID = 'template_pq1gz09';
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+function sendEmail() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+  const message = document.getElementById('cf-msg').value.trim();
+  const btn     = document.getElementById('cf-send');
+  const status  = document.getElementById('cf-status');
+
+  if (!name || !email || !message) {
+    status.textContent = 'Please fill in your name, email, and message.';
+    status.className = 'cf-status error';
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    status.textContent = 'Please enter a valid email address.';
+    status.className = 'cf-status error';
+    return;
+  }
+
+  btn.disabled = true;
+  document.getElementById('cf-btn-text').textContent = 'Sending\u2026';
+  status.textContent = '';
+  status.className = 'cf-status';
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    from_name:  name,
+    from_email: email,
+    subject:    subject || 'Portfolio enquiry',
+    message:    message,
+    reply_to:   email
+  }).then(() => {
+    document.getElementById('cf-btn-text').textContent = 'Sent \u2713';
+    status.textContent = "Thanks! I\u2019ll be in touch soon.";
+    status.className = 'cf-status success';
+    ['cf-name','cf-email','cf-subject','cf-msg'].forEach(id=>document.getElementById(id).value='');
+  }).catch(err => {
+    btn.disabled = false;
+    document.getElementById('cf-btn-text').textContent = 'Send message \u2192';
+    status.textContent = 'Something went wrong \u2014 please try LinkedIn instead.';
+    status.className = 'cf-status error';
+    console.error('EmailJS error:', err);
+  });
+}
+</script>
